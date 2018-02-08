@@ -8,7 +8,7 @@ apply(mydata['Morgue'], 2, function(x) length(which(!is.na(x))))
 mean(mydata$Size,na.rm = TRUE)
 head(mydata$Size)
 
-//Removing Wrongly calculated dates, which are negative and those greater than 100
+#Removing Wrongly calculated dates, which are negative and those greater than 100
 mydata$Death_to_Burial = as.numeric(mydata$Death_to_Burial)
 for(i in 1:nrow(mydata['Death_to_Announce']))
 {
@@ -24,7 +24,7 @@ for(i in 1:nrow(mydata['Death_to_Announce']))
   }
 }
 
-//Group by county to get Average age per county
+#Group by county to get Average age per county
 meanpercounty <- mydata %>%
   dplyr::group_by(mydata$County_Burial) %>%
   dplyr::summarise(mean = mean(mydata$Age,na.rm=TRUE))
