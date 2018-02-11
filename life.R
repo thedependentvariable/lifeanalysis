@@ -9,17 +9,10 @@ mean(mydata$Size,na.rm = TRUE)
 head(mydata$Size)
 
 # ============ Removing Wrongly calculated dates, which are negative and those greater than 100 =======
-mydata$Death_to_Burial = as.numeric(mydata$Death_to_Burial)
+mydata$Death_to_Burial = as.numeric(as.character(mydata$Death_to_Burial))
 
 # Death to Burial
-for(i in 1:nrow(mydata))
-{
-  if(is.na(mydata$Death_to_Burial[i])){
-    mydata$Death_to_Burial[i] = NA
-  }else if(mydata$Death_to_Burial[i] > 100 || mydata$Death_to_Burial[i] < 0){
-    mydata$Death_to_Burial[i] = NA
-  }
-}
+
 
 #Group by county to get Average age per county
 meanpercounty <- mydata %>%
