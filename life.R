@@ -8,19 +8,16 @@ apply(mydata['Morgue'], 2, function(x) length(which(!is.na(x))))
 mean(mydata$Size,na.rm = TRUE)
 head(mydata$Size)
 
-#Removing Wrongly calculated dates, which are negative and those greater than 100
+# ============ Removing Wrongly calculated dates, which are negative and those greater than 100 =======
 mydata$Death_to_Burial = as.numeric(mydata$Death_to_Burial)
-for(i in 1:nrow(mydata['Death_to_Announce']))
+
+# Death to Burial
+for(i in 1:nrow(mydata))
 {
   if(is.na(mydata$Death_to_Burial[i])){
-    mydata$Death_to_Burial[i] = "NA"
-  }else if(mydata$Death_to_Burial[i] <= 100)
-    {
-    mydata$Death_to_Burial[i] = mydata$Death_to_Burial[i]
-  }else if(mydata$Death_to_Burial[i] >= 101){
-    mydata$Death_to_Burial[i] = "NA"
-  }else if(mydata$Death_to_Burial[i] <= 0){
-    mydata$Death_to_Burial[i] = "NA"
+    mydata$Death_to_Burial[i] = NA
+  }else if(mydata$Death_to_Burial[i] > 100 || mydata$Death_to_Burial[i] < 0){
+    mydata$Death_to_Burial[i] = NA
   }
 }
 
